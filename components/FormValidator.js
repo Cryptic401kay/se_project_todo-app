@@ -11,13 +11,13 @@ class FormValidator {
     _showInputError(inputElement, errorMessage) {
       //const errorElementId = `#${inputElement.id}-error`;
       //const errorElement = formElement.querySelector(errorElementId);
-      const errorEl = this._formEl.querySelector(`#${inputElement.id}-error`);
+      const errorElement = this._formEl.querySelector(`#${inputElement.id}-error`);
       inputElement.classList.add(this._inputErrorClass);
       errorElement.textContent = errorMessage;
       errorElement.classList.add(this._errorClass);
     }
 
-   _hideInputError() {
+   _hideInputError(inputElement) {
      //const errorElementId = `#${inputElement.id}-error`;
      //const errorElement = formElement.querySelector(errorElementId);
      const errorEl = this._formEl.querySelector(`#${inputElement.id}-error`);
@@ -33,7 +33,7 @@ class FormValidator {
           inputElement.validationMessage,
         );
       } else {
-        hideInputError(inputElement);
+        this._hideInputError(inputElement);
   }
     }
 
