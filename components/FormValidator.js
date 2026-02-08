@@ -8,32 +8,32 @@ class FormValidator {
       this._formEl = formEl;
     }
 
-    _showInputError() {
-      const errorElementId = `#${inputElement.id}-error`;
-      const errorElement = formElement.querySelector(errorElementId);
+    _showInputError(inputElement, errorMessage) {
+      //const errorElementId = `#${inputElement.id}-error`;
+      //const errorElement = formElement.querySelector(errorElementId);
+      const errorEl = this._formEl.querySelector(`#${inputElement.id}-error`);
       inputElement.classList.add(this._inputErrorClass);
       errorElement.textContent = errorMessage;
       errorElement.classList.add(this._errorClass);
     }
 
    _hideInputError() {
-     const errorElementId = `#${inputElement.id}-error`;
-     const errorElement = formElement.querySelector(errorElementId);
+     //const errorElementId = `#${inputElement.id}-error`;
+     //const errorElement = formElement.querySelector(errorElementId);
+     const errorEl = this._formEl.querySelector(`#${inputElement.id}-error`);
      inputElement.classList.remove(this._inputErrorClass);
-     errorElement.classList.remove(this._errorClass);
-     errorElement.textContent = "";
+     errorEl.classList.remove(this._errorClass);
+     errorEl.textContent = "";
    }
 
     _checkInputValidity(inputElement) {
       if (!inputElement.validity.valid) {
-        showInputError(
-          formElement,
+        this._showInputError(
           inputElement,
           inputElement.validationMessage,
-          settings,
         );
       } else {
-        hideInputError(formElement, inputElement, settings);
+        hideInputError(inputElement);
   }
     }
 
@@ -44,7 +44,7 @@ class FormValidator {
     }
 
     _toggleButtonState() {
-      if (this._hasInvalidInput(this._inputList)) {
+      if (this._hasInvalidInput()) {
         this._buttonElement.classList.add(this._inactiveButtonClass);
         this._buttonElement.disabled = true;
       } else {
@@ -60,12 +60,12 @@ class FormValidator {
       this._buttonElement = this._formEl.querySelector(
         this._submitButtonSelector);
 
-      this._toggleButtonState(this._inputList, this._buttonElement, this._inputSelector);
+      this._toggleButtonState();
 
       this._inputList.forEach((inputElement) => {
         inputElement.addEventListener("input", () => {
           this._checkInputValidity(inputElement);
-          toggleButtonState(this._inputList, this._buttonElement, this._inputSelector);
+          this._toggleButtonState();
         });
       });
     }
