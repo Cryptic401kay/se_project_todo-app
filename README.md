@@ -1,6 +1,6 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+This is a App that helps keep track of your daily tasks by adding a updating list of task you have completed and are still working on. Along with the ability to add as many tasks as you want.
 
 ## Functionality
 
