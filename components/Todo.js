@@ -65,7 +65,7 @@ class Todo {
     }
 
     getView() {
-      this._todoElement = this._templateElement.content
+      this._todoElement = this._id.content
       .querySelector(".todo")
       .cloneNode(true);
       const todoNameEl = this._todoElement.querySelector(".todo__name");
@@ -83,7 +83,7 @@ class Todo {
       }
       
       this._generateCheckboxEl();
-      this._setEventListener();
+      this._setEventListeners();
 
       return this._todoElement;
     }

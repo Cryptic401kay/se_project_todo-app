@@ -13,7 +13,7 @@ class Section {
 
   addItem(element) {
     this._container.append(element);
-    addTodoToList(values);
+    //addTodoToList(values);
   }
 }
 
