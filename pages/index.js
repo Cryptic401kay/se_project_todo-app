@@ -9,7 +9,7 @@ import TodoCounter from "../components/TodoCounter.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopupEl = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopupEl.querySelector("add_todo-popup");
+const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
 
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
@@ -29,7 +29,7 @@ const addTodoPopup = new PopupWithForm({
    handleFormSubmit: (inputValues) => {
      const { name, date } = inputValues;
 
-     if (date !== indefined) {
+     if (date !== undefined) {
       const dateInput = new Date(date);
       dateInput.setMinutes(dateInput.getMinutes() + dateInput.getTimezoneOffset());
 
