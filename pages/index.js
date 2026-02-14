@@ -10,10 +10,8 @@ import TodoCounter from "../components/TodoCounter.js";
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopupEl = document.querySelector("#add-todo-popup");
 const addTodoForm = addTodoPopupEl.querySelector("add_todo-popup");
-//const addTodoForm = document.forms["add-todo-form"];
+
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
-//const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
-//const todosList = document.querySelector(".todos__list");
 
 function handleCheck(completed) {
   todoCounter.updateCompleted(true);
@@ -46,22 +44,6 @@ const addTodoPopup = new PopupWithForm({
      } else {
       console.log("Date is undefined");
      }
-     /*const name = inputValues.name;
-     const dateInput = inputValues.date;
-
-     const date = new Date(dateInput);
-     date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-     const id = uuidv4();
-
-     const values = { name, date, id };
-     const todo =generateTodo(values);
-     todosList.addItem(element);
-
-     addTodoFormValidator.resetValidation();
-     
-     closeModal(addTodoPopupEl);
-     */
    },
  });
  addTodoPopup.setEventListeners();
@@ -87,16 +69,5 @@ const section = new Section({
 });
 section.renderItems();
 
-/*
-addTodoCloseBtn.addEventListener("click", () => {
-  addTodoPopup.close();
-});
-
-
-function addTodoToList(todoData) {
-  const todo = generateTodo(todoData);
-  todosList.append(todo);
-};
-*/
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
