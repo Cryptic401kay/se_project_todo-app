@@ -9,12 +9,11 @@ import TodoCounter from "../components/TodoCounter.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopupEl = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
-
+const addTodoForm = document.forms["add-todo-form"];
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
 function handleCheck(completed) {
-  todoCounter.updateCompleted(true);
+  todoCounter.updateCompleted(completed);
 };
 
 function handleDelete(completed) {
@@ -24,6 +23,11 @@ function handleDelete(completed) {
   }
 };
 
+const renderTodo = (item) => {
+  const todo = generateTodo(item);
+  section.addItem(todo);
+}
+      
 const addTodoPopup = new PopupWithForm({ 
   popupSelector: "#add-todo-popup",
    handleFormSubmit: (inputValues) => {
@@ -32,17 +36,18 @@ const addTodoPopup = new PopupWithForm({
      if (date !== undefined) {
       const dateInput = new Date(date);
       dateInput.setMinutes(dateInput.getMinutes() + dateInput.getTimezoneOffset());
+      
+      
 
       const id = uuidv4();
-      const values = { name, date, dateInput, id };
 
-      const newTodoElement = generateTodo(values);
-      section.addItem(newTodoElement);
+      const values = { name, date, dateInput, id };
+      
+      renderTodo(values);
+      
       todoCounter.updateTotal(true);
       newTodoValidator.resetValidation();
       addTodoPopup.close();
-     } else {
-      console.log("Date is undefined");
      }
    },
  });
@@ -62,8 +67,7 @@ addTodoButton.addEventListener("click", () => {
 const section = new Section({
   items: initialTodos,
   renderer: (item) => {
-    const todo = generateTodo(item);
-    section.addItem(todo);
+    renderTodo(item);
   },
   containerSelector: ".todos__list",
 });

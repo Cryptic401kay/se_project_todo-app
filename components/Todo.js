@@ -1,9 +1,9 @@
 class Todo {
     constructor (data, selector, handleCheck, handleDelete) {
       this._completed = data.completed;
-      //this._name = data.name;
-      //this._date = data.date;
-      //this._id = data.id;
+      this._name = data.name;
+      this._date = data.date;
+      this._id = data.id;
       this._data = data;
       this._selector = selector;
       this._handleCheck = handleCheck;
